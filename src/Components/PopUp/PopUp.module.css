@@ -1,0 +1,45 @@
+.popUp {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background-color: rgb(103, 129, 247);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.closePopUp {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 0 20px 0 20px;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.typeContainer {
+    display: flex;
+}
+
+.popUpTitle {
+    font: 32px/1 'Roboto', sans-serif;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.postscript {
+    font: 32px/1 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.result {
+    font: 24px/1 'Roboto', sans-serif;
+    color: #fff;
+}
