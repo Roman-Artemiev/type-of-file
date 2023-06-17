@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Result = () => {
+import classes from './Result.module.css'
+
+const Result = (props) => {
 
     const fileTypes = {
         jpeg: "Image (JPEG)",
@@ -148,23 +150,18 @@ const Result = () => {
         pl: "Perl file",
       };
       
-      function checkFile(fileName) {
-        if (fileName in fileTypes) {
-          return fileTypes[fileName];
+      const checkFile = (fileName) => {
+        const extension = fileName.slice(fileName.lastIndexOf('.') + 1).toLowerCase();
+        if (extension in fileTypes) {
+          return fileTypes[extension];
         } else {
           return "Unknown file type";
         }
-      }
-            
-      $('#file').change(() => {
-        let fileType = file.value.slice(file.value.lastIndexOf('.') + 1);
-        $('.result').text(checkFile(fileType));
-        $('.postscript').text(`: (${fileType})`);
-      });
+      };
     
-    return (
-        <p className={classes.result}></p>
-    );
-};
-
-export default Result;
+      const result = checkFile(props.fileName);
+    
+      return <p className={classes.result}>{result}</p>;
+    };
+    
+    export default Result;

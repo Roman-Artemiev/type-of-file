@@ -8,11 +8,20 @@ import PopUp from './Components/PopUp/PopUp';
 
 function App() {
   const [show, setShow] = useState(false);
-  const [typeFile, setTypeFile] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
   const [fileExtension, setFileExtension] = useState('');
 
+  const handleFileChange = (event) => {
+    setShow(true);
+    const fileName = event.target.value;
+    setSelectedFile(fileName);
+    const extension = fileName.slice(fileName.lastIndexOf('.') + 1);
+    setFileExtension(extension);
+    console.log(extension);
+  };
+
   return (
-    <div className="App">
+      <div className="App">
       <div className="wrapper">
         <div className="file__container">
           <h2 className="title">
@@ -22,14 +31,8 @@ function App() {
           <fieldset className="file-area">
             <label htmlFor="file">
               <input
-                value={typeFile}
-                onChange={(event) => {
-                  setShow(!show);
-                  setTypeFile(event.target.value);
-                  const extension = event.target.value.slice(event.target.value.lastIndexOf('.') + 1);
-                  setFileExtension(extension);
-                  console.log(extension);
-                }}
+                value={selectedFile}
+                onChange={handleFileChange}
                 type="file"
                 id="file"
                 className="file"
@@ -42,7 +45,7 @@ function App() {
         </div>
         <CSSTransition classNames="alert" in={show} timeout={300} unmountOnExit>
           <React.Fragment>
-            {show && <PopUp postscript={fileExtension} closeWindow={() => setShow(!show)} />}
+            {show && <PopUp fileName={selectedFile} fileExtension={fileExtension} closeWindow={() => setShow(false)} />}
           </React.Fragment>
         </CSSTransition>
       </div>
